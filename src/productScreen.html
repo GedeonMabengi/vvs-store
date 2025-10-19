@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="fr" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blazer Minimaliste - LUXE</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="font-sans text-text bg-background antialiased h-full">
+<header class="sticky top-0 z-50 bg-white border-b border-gray-200">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+            <!-- Logo -->
+            <div class="flex-shrink-0 flex items-center">
+                <a href="index.html" class="text-xl sm:text-2xl font-bold tracking-tight">VVS STORE</a>
+            </div>
+
+            <!-- Navigation desktop -->
+            <nav class="hidden md:flex space-x-4 lg:space-x-8">
+                <a href="nouveautes.html" class="text-sm font-medium hover:text-accent transition-colors whitespace-nowrap">Nouveautés</a>
+                <a href="vetements.html" class="text-sm font-medium hover:text-accent transition-colors whitespace-nowrap">Vêtements</a>
+                <a href="#" class="text-sm font-medium hover:text-accent transition-colors whitespace-nowrap">Accessoires</a>
+                <a href="#" class="text-sm font-medium hover:text-accent transition-colors whitespace-nowrap">Collections</a>
+                <a href="apropos.html" class="text-sm font-medium hover:text-accent transition-colors whitespace-nowrap">À propos</a>
+            </nav>
+
+            <!-- Icônes actions -->
+            <div class="flex items-center space-x-2 sm:space-x-4">
+                <!-- Bouton recherche (ouvre le modal) -->
+                <button class="p-2 rounded-full hover:bg-secondary" id="search-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                </button>
+                
+                <!-- Sélecteur de langue -->
+                <div class="relative hidden sm:block">
+                    <button class="p-2 rounded-full hover:bg-secondary flex items-center" id="lang-button">
+                        <span class="lang-flag flag-fr"></span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    
+                    <div class="absolute right-0 mt-2 w-40 bg-white rounded-lg shadow-lg py-2 hidden z-50" id="lang-dropdown">
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 flex items-center">
+                            <span class="lang-flag flag-fr mr-2"></span> Français
+                        </a>
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 flex items-center">
+                            <span class="lang-flag flag-en mr-2"></span> English
+                        </a>
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 flex items-center">
+                            <span class="lang-flag flag-es mr-2"></span> Español
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Bouton panier -->
+                <button class="p-2 rounded-full hover:bg-secondary relative">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                    </svg>
+                    <span class="absolute -top-1 -right-1 bg-accent text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">3</span>
+                </button>
+                
+                <!-- État de connexion -->
+                <div class="relative hidden sm:block" id="user-menu">
+                    <!-- Connecté -->
+                    <div class="logged-in hidden">
+                        <button class="flex items-center text-sm rounded-full focus:outline-none" id="profile-button">
+                            <div class="h-8 w-8 rounded-full bg-gray-200 flex items-center justify-center">
+                                <span class="text-sm font-medium">JD</span>
+                            </div>
+                        </button>
+                        
+                        <div class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 hidden z-50" id="profile-dropdown">
+                            <div class="px-4 py-2 border-b border-gray-100 flex justify-between items-center">
+                                <div>
+                                    <p class="font-medium">Jean Dupont</p>
+                                    <p class="text-xs text-gray-500">jean.dupont@email.com</p>
+                                </div>
+                                <button class="text-gray-400 hover:text-primary" id="close-profile">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                    </svg>
+                                </button>
+                            </div>
+                            <a href="#" class="block px-4 py-2 hover:bg-gray-100">Mon compte</a>
+                            <a href="#" class="block px-4 py-2 hover:bg-gray-100">Mes commandes</a>
+                            <a href="#" class="block px-4 py-2 hover:bg-gray-100">Mes favoris</a>
+                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 border-t border-gray-100 text-accent">Déconnexion</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Non connecté -->
+                    <div class="logged-out">
+                        <div class="flex space-x-2">
+                            <a href="connexion.html" class="px-3 py-1 text-sm font-medium hover:text-accent transition-colors whitespace-nowrap">Connexion</a>
+                            <a href="inscription.html" class="px-3 py-1 text-sm font-medium bg-primary text-white rounded hover:bg-opacity-90 transition-colors whitespace-nowrap">Inscription</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Menu mobile -->
+                <button class="p-2 rounded-full hover:bg-secondary md:hidden" id="mobile-menu-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                    <span class="sr-only">Menu</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Menu mobile -->
+    <div class="md:hidden hidden" id="mobile-menu">
+        <div class="px-2 pt-2 pb-3 space-y-1">
+            <a href="nouveautes.html" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-secondary">Nouveautés</a>
+            <a href="vetements.html" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-secondary">Vêtements</a>
+            <a href="#" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-secondary">Accessoires</a>
+            <a href="#" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-secondary">Collections</a>
+            <a href="apropos.html" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-secondary">À propos</a>
+            
+            <!-- Sélecteur de langue mobile -->
+            <div class="pt-2 border-t border-gray-200 mt-2">
+                <div class="px-3 py-2 text-base font-medium">Langue</div>
+                <a href="#" class="block px-8 py-2 text-sm hover:bg-secondary flex items-center">
+                    <span class="lang-flag flag-fr mr-2"></span> Français
+                </a>
+                <a href="#" class="block px-8 py-2 text-sm hover:bg-secondary flex items-center">
+                    <span class="lang-flag flag-en mr-2"></span> English
+                </a>
+                <a href="#" class="block px-8 py-2 text-sm hover:bg-secondary flex items-center">
+                    <span class="lang-flag flag-es mr-2"></span> Español
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+
+    <!-- Section Produit -->
+    <section class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <!-- Galerie Produit -->
+<div class="product-gallery">
+    <div class="thumbnails">
+        <!-- Remplace les div par des img avec des URLs de CDN -->
+        <img src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=800&q=80" alt="Blazer noir à coupe droite présenté sur un mannequin, vue trois-quarts; fond studio neutre; ton élégant et professionnel" class="thumbnail active object-cover">
+        <img src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=800&q=80" alt="Blazer vue 2" class="thumbnail object-cover">
+        <img src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=800&q=80" alt="Blazer vue 3" class="thumbnail object-cover">
+        <img src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=800&q=80" alt="Blazer vue 4" class="thumbnail object-cover">
+        <img src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=800&q=80" alt="Blazer vue 5" class="thumbnail object-cover">
+    </div>
+    <!-- Image principale -->
+    <img src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=800&q=80" alt="Blazer principal" class="main-image object-contain">
+</div>
+
+
+            <!-- Détails Produit -->
+            <div>
+                <div class="mb-6">
+                    <span class="text-sm text-gray-500 uppercase tracking-wider">Vêtements / Blazers</span>
+                    <h1 class="text-3xl md:text-4xl font-bold mt-2 mb-3">Blazer Minimaliste</h1>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="star-rating">★★★★★</div>
+                        <span class="text-sm text-gray-500">(24 avis)</span>
+                    </div>
+                    <p class="text-2xl font-bold">$249</p>
+                </div>
+
+                <!-- Sélecteur de couleur -->
+                <div class="mb-6">
+                    <p class="font-medium mb-2">Couleur: <span id="selected-color">Noir</span></p>
+                    <div class="color-selector">
+                        <div class="color-option active" style="background-color: #000;" data-color="Noir"></div>
+                        <div class="color-option" style="background-color: #964B00;" data-color="Marron"></div>
+                        <div class="color-option" style="background-color: #808080;" data-color="Gris"></div>
+                        <div class="color-option" style="background-color: #e8e8e8; border: 1px solid #ccc;" data-color="Beige"></div>
+                    </div>
+                </div>
+
+                <!-- Sélecteur de taille -->
+                <div class="mb-6">
+                    <p class="font-medium mb-2">Taille: <span id="selected-size">M</span></p>
+                    <div class="size-selector">
+                        <div class="size-option" data-size="XS">XS</div>
+                        <div class="size-option" data-size="S">S</div>
+                        <div class="size-option active" data-size="M">M</div>
+                        <div class="size-option" data-size="L">L</div>
+                        <div class="size-option" data-size="XL">XL</div>
+                    </div>
+                    <a href="#" class="mt-2 text-sm text-gray-500 inline-block hover:text-accent">Guide des tailles</a>
+                </div>
+
+                <!-- Quantité et Ajout au panier -->
+                <div class="mb-8">
+                    <p class="font-medium mb-2">Quantité</p>
+                    <div class="flex items-start gap-6">
+                        <div class="quantity-selector">
+                            <button class="quantity-btn" id="decrement">-</button>
+                            <input type="text" value="1" class="quantity-input" id="quantity">
+                            <button class="quantity-btn" id="increment">+</button>
+                        </div>
+                        <a href="panier.html" class="flex-1 bg-primary text-center text-secondary px-8 py-3 font-medium hover:bg-opacity-90 transition-colors h-12">
+                            Ajouter au panier
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Livraison et Retours -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+                    <div class="flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                        <span class="text-sm">Livraison gratuite</span>
+                    </div>
+                    <div class="flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                        <span class="text-sm">Retours gratuits</span>
+                    </div>
+                    <div class="flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                        <span class="text-sm">Garantie 2 ans</span>
+                    </div>
+                </div>
+
+                <!-- Accordéons Détails -->
+                <div class="space-y-4">
+                    <div class="accordion active border-b border-border pb-4">
+                        <button class="accordion-btn w-full flex justify-between items-center">
+                            <span class="font-medium">Description</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transform rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                        <div class="accordion-content mt-4">
+                            <p class="text-gray-600 dark:text-gray-300">Le blazer minimaliste LUXE est une pièce intemporelle conçue pour durer. Taillé dans un tissu de laine premium, ce blazer offre une coupe structurée tout en conservant un confort exceptionnel. Parfait pour habiller un jean comme pour compléter un costume.</p>
+                            <ul class="mt-4 space-y-2 text-gray-600 dark:text-gray-300">
+                                <li class="flex items-start">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-accent flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                    </svg>
+                                    <span>100% laine vierge</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-accent flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                    </svg>
+                                    <span>Doublure en soie</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-accent flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                    </svg>
+                                    <span>Finition à la main</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-accent flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                    </svg>
+                                    <span>Fabriqué en Italie</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="accordion border-b border-border pb-4">
+                        <button class="accordion-btn w-full flex justify-between items-center">
+                            <span class="font-medium">Livraison & Retours</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                        <div class="accordion-content mt-4 hidden">
+                            <p class="text-gray-600 dark:text-gray-300">Livraison standard gratuite en 2-3 jours ouvrés. Retours gratuits sous 30 jours. Pour les retours internationaux, des frais de retour peuvent s'appliquer.</p>
+                        </div>
+                    </div>
+
+                    <div class="accordion">
+                        <button class="accordion-btn w-full flex justify-between items-center">
+                            <span class="font-medium">Entretien</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                        <div class="accordion-content mt-4 hidden">
+                            <p class="text-gray-600 dark:text-gray-300">Nettoyage à sec uniquement. Ne pas laver en machine. Repasser à basse température. Conserver sur cintre pour préserver la forme.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Avis -->
+    <section class="bg-secondary py-16">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-2xl font-bold">Avis clients</h2>
+                <a href="#" class="text-sm font-medium hover:text-accent transition-colors">Voir tous les avis</a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="review-card">
+                    <div class="flex items-center mb-4">
+                        <div class="h-10 w-10 rounded-full bg-gray-300 mr-4"></div>
+                        <div>
+                            <p class="font-medium">Marie L.</p>
+                            <div class="star-rating text-sm">★★★★★</div>
+                        </div>
+                    </div>
+                    <h3 class="font-medium mb-2">Parfait pour le bureau</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">Ce blazer est tout simplement parfait. La coupe est impeccable et le tissu est d'une qualité exceptionnelle. Je le porte au bureau avec une jupe crayon ou avec un jean le vendredi.</p>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">Publié le 12 mars 2023</p>
+                </div>
+
+                <div class="review-card">
+                    <div class="flex items-center mb-4">
+                        <div class="h-10 w-10 rounded-full bg-gray-300 mr-4"></div>
+                        <div>
+                            <p class="font-medium">Thomas D.</p>
+                            <div class="star-rating text-sm">★★★★★</div>
+                        </div>
+                    </div>
+                    <h3 class="font-medium mb-2">Qualité exceptionnelle</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">J'ai acheté ce blazer en noir et en gris. La finition est impeccable et le confort est au rendez-vous même après une longue journée. Un investissement qui vaut chaque centime.</p>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">Publié le 5 février 2023</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Produits Similaires -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div class="group">
+        <div class="aspect-[3/4] mb-4 relative overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=800&q=80" alt="Veste en cuir brun présentée sur un mannequin, vue de face avec épaules structurées et manches légèrement raccourcies; fond studio neutre avec éclairage doux; évoque élégance robuste et savoir-faire premium" class="h-full w-full object-cover">
+            <div class="absolute top-3 left-3 bg-accent text-white px-2 py-1 text-xs font-medium">NOUVEAU</div>
+        </div>
+        <div class="flex justify-between">
+            <div>
+                <h3 class="font-medium">Veste en cuir</h3>
+                <p class="text-gray-600 dark:text-gray-300">Brun foncé</p>
+            </div>
+            <p class="font-medium">$399</p>
+        </div>
+    </div>
+
+    <!-- Répète pour les autres produits -->
+    <div class="group">
+        <div class="aspect-[3/4] mb-4 relative overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=800&q=80" alt="Chemise structurée blanche présentée sur mannequin buste, vue de face; fond studio neutre; ton épuré et professionnel" class="h-full w-full object-cover">
+        </div>
+        <div class="flex justify-between">
+            <div>
+                <h3 class="font-medium">Chemise structurée</h3>
+                <p class="text-gray-600 dark:text-gray-300">Blanc</p>
+            </div>
+            <p class="font-medium">$139</p>
+        </div>
+    </div>
+
+    <div class="group">
+        <div class="aspect-[3/4] mb-4 relative overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=800&q=80" alt="Veste en cuir brun présentée sur un mannequin, vue de face avec épaules structurées et manches légèrement raccourcies; fond studio neutre avec éclairage doux; évoque élégance robuste et savoir-faire premium" class="h-full w-full object-cover">
+            <div class="absolute top-3 left-3 bg-accent text-white px-2 py-1 text-xs font-medium">NOUVEAU</div>
+        </div>
+        <div class="flex justify-between">
+            <div>
+                <h3 class="font-medium">Veste en cuir</h3>
+                <p class="text-gray-600 dark:text-gray-300">Brun foncé</p>
+            </div>
+            <p class="font-medium">$399</p>
+        </div>
+    </div>
+
+    <!-- Répète pour les autres produits -->
+    <div class="group">
+        <div class="aspect-[3/4] mb-4 relative overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=800&q=80" alt="Chemise structurée blanche présentée sur mannequin buste, vue de face; fond studio neutre; ton épuré et professionnel" class="h-full w-full object-cover">
+        </div>
+        <div class="flex justify-between">
+            <div>
+                <h3 class="font-medium">Chemise structurée</h3>
+                <p class="text-gray-600 dark:text-gray-300">Blanc</p>
+            </div>
+            <p class="font-medium">$139</p>
+        </div>
+    </div>
+</div>
+
+
+    <!-- Pied de page -->
+    <footer class="bg-secondary py-16">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+                <div>
+                    <h3 class="text-xl font-bold mb-6">VVS STORE</h3>
+                    <p class="text-gray-600 mb-4">Une marque minimaliste pour un style audacieux et intemporel.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-600 hover:text-primary">
+                            <span class="sr-only">Instagram</span>
+                            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-600 hover:text-primary">
+                            <span class="sr-only">Twitter</span>
+                            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-sm font-semibold uppercase tracking-wider mb-6">Boutique</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-600 hover:text-primary transition-colors">Nouveautés</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-primary transition-colors">Vêtements</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-primary transition-colors">Accessoires</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-primary transition-colors">Collections</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-sm font-semibold uppercase tracking-wider mb-6">Aide</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-600 hover:text-primary transition-colors">FAQ</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-primary transition-colors">Livraison</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-primary transition-colors">Retours</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-primary transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-sm font-semibold uppercase tracking-wider mb-6">Legal</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-600 hover:text-primary transition-colors">Conditions</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-primary transition-colors">Confidentialité</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-primary transition-colors">Cookies</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-16 pt-8 border-t border-gray-300 text-center text-gray-600">
+                <p>&copy; 2025 VVS STORE. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
